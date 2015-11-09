@@ -202,3 +202,50 @@ var Article = React.createClass({
   }
 
 });
+
+var Thumbnails = React.createClass({
+
+  getImagePaths: function() {
+    var imagePaths = [];
+    for (var idx = 0; idx < 8; idx++) {
+      imagePaths.push("/./images/00" + (idx + 1) + ".png")
+    }
+    return imagePaths;
+  },
+
+  getInitialState: function(){
+    return {selectedImageIdx: "/./images/001.png"}
+  },
+
+  setFocusImage: function(path) {
+    this.setState({selectedImageIdx: path});
+  },
+
+  render: function(){
+    return(
+    <div>
+      <div className="main-img"><img src={this.state.currentSelectedImg} /></div>
+      <GutterImages imagePaths={this.getImagePaths()}/>
+    </div>
+  )}
+});
+
+var GutterImages = React.createClass({
+
+  getImageList: function() {
+    return this.props.imagePaths.map(function(path) {
+        return (
+          <img src={path} />)
+    }, this)
+
+
+  },
+
+  render: function() {
+    return (
+      <ul>
+      {this.getImageList()}
+      </ul>
+    )
+  }
+});
