@@ -11,6 +11,8 @@
     <h1>Hello World</h1>
     <div id="autocomplete">
     </div>
+    <div id="weather-clock">
+    <!-- </div>
       <script type="text/jsx">
       var names = [
         "Jonathan",
@@ -25,6 +27,13 @@
         React.render(
           <AutoComplete names={names}/>,
           document.getElementById("autocomplete")
+        );
+      </script> -->
+
+      <script type="text/jsx">
+        React.render(
+          <WeatherClock time={ new Date() }/>,
+          document.getElementById("weather-clock")
         );
       </script>
   </body>
