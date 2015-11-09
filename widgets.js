@@ -115,3 +115,90 @@
     }
 
   });
+
+  var TabsWidget = React.createClass({
+
+    getInitialState: function() {
+      return { tabIdx: 1 }
+    },
+
+    setSelectedTab: function (tab) {
+      this.setState({ tabIdx: tab });
+    },
+
+    getTitles: function(){
+      return this.props.articles.map(function(article) {
+        return article.title;
+      }, this)
+    },
+
+    getArticles: function(){
+      return this.props.articles.map(function(article) {
+        return article.content;
+      }, this);
+    },
+
+    getArticle: function(){
+      return this.getArticles()[this.state.tabIdx];
+    },
+
+    render: function() {
+      return (
+        <div>
+          < Tabs titles={this.getTitles()} tabIdx ={this.state.tabIdx} setActiveTab={this.setSelectedTab}/>
+          <article>
+            <Article article={this.getArticle()} />
+          </article>
+        </div>
+      )
+    }
+  });
+
+var Tabs = React.createClass({
+
+  selectTab: function(e) {
+    this.props.setActiveTab(e.target.id);
+  },
+
+  getTabBodies: function(){
+    return this.props.titles.map(function(title, id) {
+      if (this.props.tabIdx == id){
+        return(
+        <li onClick={this.selectTab}
+        id={id}><strong>{title}</strong></li>
+      )} else {
+      return (
+        <li onClick={this.selectTab} id={id} >{title}</li>
+      )}
+    }, this);
+  },
+
+
+  render: function(){
+    return <ul>{ this.getTabBodies() }</ul>
+  }
+
+});
+
+
+var TabBody = React.createClass({
+
+
+
+  render: function(){
+
+    return (
+      <li onClick={this.selectTab} >{this.props.title}</li>
+    )
+  }
+
+});
+
+
+var Article = React.createClass({
+
+  render: function(){
+    return <article>{this.props.article}</article>
+  }
+
+});

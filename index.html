@@ -12,6 +12,8 @@
     <div id="autocomplete">
     </div>
     <div id="weather-clock">
+    </div>
+    <div id="tabs"></div>
     <!-- </div>
       <script type="text/jsx">
       var names = [
@@ -30,10 +32,22 @@
         );
       </script> -->
 
-      <script type="text/jsx">
+      <!-- <script type="text/jsx">
         React.render(
           <WeatherClock time={ new Date() }/>,
           document.getElementById("weather-clock")
+        );
+      </script> -->
+
+      <script type="text/jsx">
+      var articles = [
+        {title: "Great article", content: "You won't belive...."},
+        {title: "Terrible article", content: "This is actually a good article."},
+        {title: "Okay article", content: "Things happend"}
+      ];
+        React.render(
+          <TabsWidget articles={articles}/>,
+          document.getElementById("tabs")
         );
       </script>
   </body>
